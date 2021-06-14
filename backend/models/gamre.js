@@ -1,7 +1,7 @@
 'use strict'
 
 var mongoose = require('mongoose');
-var schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var GamreSchema = Schema({
     idGam: {type: mongoose.Schema.Types.ObjectId, ref: 'Game'},
