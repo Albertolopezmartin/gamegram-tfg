@@ -1,6 +1,7 @@
 'use strict'
 
 var express = require('express');
+
 var CountryController = require('../controllers/country');
 var CompanyController = require('../controllers/company');
 var GameController = require('../controllers/game');
@@ -8,7 +9,11 @@ var GamreController = require('../controllers/gamre');
 var GenreController = require('../controllers/genre');
 var PostController = require('../controllers/post');
 var UserController = require('../controllers/user');
+
 var router = express.Router();
+
+var multipart = require('connect-multiparty');
+var md_upload = multipart({ uploadDir: './upload/photoss'});
 
 router.post('/country/save', CountryController.save);
 router.get('/countries/:last?', CountryController.getCountries);
@@ -34,24 +39,24 @@ router.get('/gamre/:id', GamreController.getGamre);
 router.put('/gamre/:id', GamreController.update);
 router.delete('/gamre/:id', GamreController.delete);
 //
-router.post('/save', GenreController.save);
-router.get('/countries/:last?', GenreController.getCountries);
-router.get('/country/:id', GenreController.getCountry);
-router.put('/country/:id', GenreController.update);
-router.delete('/country/:id', GenreController.delete);
+router.post('/genre/save', GenreController.save);
+router.get('/genres/:last?', GenreController.getGenres);
+router.get('/genre/:id', GenreController.getGenre);
+router.put('/genre/:id', GenreController.update);
+router.delete('/genre/:id', GenreController.delete);
 //
-router.post('/save', PostController.save);
-router.get('/countries/:last?', PostController.getCountries);
-router.get('/country/:id', PostController.getCountry);
-router.put('/country/:id', PostController.update);
-router.delete('/country/:id', PostController.delete);
-router.post('/upload-image/:id', );
+router.post('/post/save', PostController.save);
+router.get('/posts/:last?', PostController.getPosts);
+router.get('/post/:id', PostController.getPost);
+router.put('/post/:id', PostController.update);
+router.delete('/post/:id', PostController.delete);
+router.post('/post/upload-image/:id', md_upload, PostController.upload);
 //
-router.post('/save', UserController.save);
-router.get('/countries/:last?', UserController.getCountries);
-router.get('/country/:id', UserController.getCountry);
-router.put('/country/:id', UserController.update);
-router.delete('/country/:id', UserController.delete);
+router.post('/user/save', UserController.save);
+router.get('/users/:last?', UserController.getUsers);
+router.get('/user/:id', UserController.getUser);
+router.put('/user/:id', UserController.update);
+router.delete('/user/:id', UserController.delete);
 //
 
 
