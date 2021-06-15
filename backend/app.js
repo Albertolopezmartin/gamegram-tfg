@@ -10,7 +10,7 @@ const { restart } = require('nodemon');
 var app = express();
 
 // Cargar ficheros rutas
-var country_routes = require('./routes/country');
+var routes = require('./routes/routes');
 
 // Middlewares
 app.use(bodyParser.urlencoded({extended:false}));
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 // Añadir prefijos a rutas / Cargar rutas
 
-app.use('/api', country_routes);
+app.use('/api', routes);
 
 // Exportar modulo
 

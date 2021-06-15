@@ -195,6 +195,10 @@ var postController = {
 
         }); 
     },
+
+    upload: (req, res) => {
+        
+    }
 }
 
 module.exports = postController;
