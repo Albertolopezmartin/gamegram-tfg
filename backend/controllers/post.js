@@ -26,7 +26,13 @@ var postController = {
             post.name = params.name;
             post.comment = params.comment;
             post.idGam = params.idGam;
-            post.idUse = params.Use;
+            post.idUse = params.idUse;
+
+            if(params.photo){
+                post.photo = params.photo;
+            }else{
+                post.photo = null;
+            }
 
             // Guardar el objeto
             post.save((err, postStored) => {
@@ -239,7 +245,7 @@ var postController = {
 
              if(postId){
                 // Buscar el post, asignarle el nombre de la imagen y actualizarlo
-                Post.findOneAndUpdate({_id: postId}, {image: file_name}, {new:true}, (err, postUpdated) => {
+                Post.findOneAndUpdate({_id: postId}, {photo: file_name}, {new:true}, (err, postUpdated) => {
 
                     if(err || !postUpdated){
                         return res.status(200).send({
@@ -264,8 +270,8 @@ var postController = {
     }, // end upload file
 
     getImage: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/posts/'+file;
+        var file = req.params.photo;
+        var path_file = './upload/photos/'+file;
 
         fs.exists(path_file, (exists) => {
             if(exists){
