@@ -290,7 +290,7 @@ var userController = {
         var searchString = req.params.search;
 
         // Find or
-        Post.find({ "$or": [
+        User.find({ "$or": [
             { "nick": { "$regex": searchString, "$options": "i"}}
         ]})
         .exec((err, users) => {
