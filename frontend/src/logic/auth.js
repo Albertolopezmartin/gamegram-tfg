@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const ENDPOINT_PATH = "https://reqres.in/api/";
+const ENDPOINT_PATH = "http://localhost:3900/api/";
 
 export default {
   setUserLogged(userLogged) {
@@ -12,11 +12,11 @@ export default {
   },
   register(email, password) {
     const user = { email, password };
-    return axios.post(ENDPOINT_PATH + "register", user);
+    return axios.post(ENDPOINT_PATH + "save/user", user);
   },
   login(email, password) {
     const user = { email, password };
-    return axios.post(ENDPOINT_PATH + "login", user);
+    return axios.post(ENDPOINT_PATH + "save", user);
   },
   deleteUserLogged() {
     Cookies.remove('userLogged');

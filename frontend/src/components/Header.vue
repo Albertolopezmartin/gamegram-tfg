@@ -23,6 +23,15 @@
                     <li>
                         <router-link to="/perfil" active-class="active">Perfil</router-link>
                     </li>
+                    <li>
+                        <router-link to="/login" active-class="active">Login</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/register" active-class="active">Registrarse</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/logout" active-class="active">Logout</router-link>
+                    </li>
                 </ul>
             </nav>
 

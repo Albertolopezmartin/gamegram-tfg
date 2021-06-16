@@ -12,9 +12,11 @@ var UserSchema = Schema({
 });
 
 module.exports = mongoose.model('User', UserSchema);
-/*
-Post.findOne({_id: 123})
-.populate('postedBy')
-.exec(function(err, post) {
-    // do stuff with post
-});*/
+schema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret) {
+        delete ret._id;
+        delete ret.hash;
+    }
+});
