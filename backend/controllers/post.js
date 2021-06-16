@@ -25,6 +25,9 @@ var postController = {
 
             // Asignar valores
             post.name = params.name;
+            post.comment = params.comment;
+            post.idGam = params.idGam;
+            post.idUse = params.Use;
 
             // Guardar el objeto
             post.save((err, postStored) => {
@@ -281,7 +284,7 @@ var postController = {
         var searchString = req.params.search;
 
         // Find or
-        Article.find({ "$or": [
+        Post.find({ "$or": [
             { "name": { "$regex": searchString, "$options": "i"}},
             { "comment": { "$regex": searchString, "$options": "i"}}
         ]})
@@ -298,7 +301,7 @@ var postController = {
             if(!posts || posts.length <= 0){
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No hay articulos que coincidan con tu busqueda'
+                    message: 'No hay imágenes que coincidan con tu busqueda'
                 });
             }
 

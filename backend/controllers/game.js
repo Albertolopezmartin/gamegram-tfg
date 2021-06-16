@@ -25,6 +25,8 @@ var gameController = {
 
             // Asignar valores
             game.name = params.name;
+            game.description = params.description;
+            game.idCom = params.idCom;
 
             // Guardar el objeto
             game.save((err, gameStored) => {
@@ -63,7 +65,7 @@ var gameController = {
         }
 
         // Find
-        query.sort('-_id').exec((err, countries) => {
+        query.sort('-_id').exec((err, games) => {
             if (err){
                 return res.status(500).send({
                     status: 'error',
@@ -71,16 +73,16 @@ var gameController = {
                 });
             }
 
-            if(!countries){
+            if(!games){
                 return res.status(404).send({
                     status: 'success',
-                    message: 'No hay Compañías para mostrar'
+                    message: 'No hay juegos para mostrar'
                 });
             }
 
             return res.status(200).send({
                 status: 'success',
-                countries
+                games
             });
             
         });
@@ -96,16 +98,16 @@ var gameController = {
         if(!gameId || gameId == null){
             return res.status(404).send({
                 status: 'error',
-                message: 'No existe la compañía'
+                message: 'No existe el juego'
             });
         }
 
-        // Buscar la compañía
+        // Buscar el juego
         Game.findById(gameId, (err, game) => {
             if(err || !game){
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No existe la compañía'
+                    message: 'No existe el juego'
                 });
             }
         // Devolverlo en json
@@ -120,7 +122,7 @@ var gameController = {
     },
 
     update: (req, res) => {
-        // Recoger el id de la compañía por la url
+        // Recoger el id del juego por la url
         var gameId = req.params.id;
 
         // Recoger los datos que llegan por put
@@ -184,7 +186,7 @@ var gameController = {
             if(!gameRemoved){
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No se ha borrado la compañía, posiblemente no exista'
+                    message: 'No se ha borrado el juego, posiblemente no exista'
                 });
             }
 
