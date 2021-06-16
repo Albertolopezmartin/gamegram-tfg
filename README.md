@@ -3,7 +3,7 @@
 Link to online app: https://gamegram-tfg.herokuapp.com/
 Link to video tutorial: https://drive.google.com/drive/u/1/folders/1AHXJYopT-DURKcQK6-aEpODEUYMUZtYb
 
-# Instrucciones de instalación
+# Installation instructions
 
 1. Have npm,node.js and Vue installed in your computer.
 2. Download/ clone this repository and unzip it.
