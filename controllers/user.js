@@ -26,8 +26,14 @@ var userController = {
             // Asignar valores
             user.nick = params.nick;
             user.email = params.email;
-            user.pfp = params.pfp;
             user.pass = params.pass;
+            user.idCou = params.idCou;
+
+            if(params.pfp){
+                user.pfp = params.pfp;
+            }else{
+                user.pfp = null;
+            }
 
             // Guardar el objeto
             user.save((err, userStored) => {
@@ -239,7 +245,7 @@ var userController = {
 
              if(userId){
                 // Buscar el usuario, asignarle el nombre de la imagen y actualizarlo
-                User.findOneAndUpdate({_id: userId}, {image: file_name}, {new:true}, (err, userUpdated) => {
+                User.findOneAndUpdate({_id: userId}, {pfp: file_name}, {new:true}, (err, userUpdated) => {
 
                     if(err || !userUpdated){
                         return res.status(200).send({
@@ -264,8 +270,8 @@ var userController = {
     }, // end upload file
 
     getImage: (req, res) => {
-        var file = req.params.image;
-        var path_file = './upload/posts/'+file;
+        var file = req.params.pfp;
+        var path_file = './upload/photos/'+file;
 
         fs.exists(path_file, (exists) => {
             if(exists){
