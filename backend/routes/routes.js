@@ -5,7 +5,6 @@ var express = require('express');
 var CountryController = require('../controllers/country');
 var CompanyController = require('../controllers/company');
 var GameController = require('../controllers/game');
-var GamreController = require('../controllers/gamre');
 var GenreController = require('../controllers/genre');
 var PostController = require('../controllers/post');
 var UserController = require('../controllers/user');
@@ -33,12 +32,6 @@ router.get('/game/:id', GameController.getGame);
 router.put('/game/:id', GameController.update);
 router.delete('/game/:id', GameController.delete);
 //
-router.post('/gamre/save', GamreController.save);
-router.get('/gamres/:last?', GamreController.getGamres);
-router.get('/gamre/:id', GamreController.getGamre);
-router.put('/gamre/:id', GamreController.update);
-router.delete('/gamre/:id', GamreController.delete);
-//
 router.post('/genre/save', GenreController.save);
 router.get('/genres/:last?', GenreController.getGenres);
 router.get('/genre/:id', GenreController.getGenre);
@@ -57,6 +50,7 @@ router.get('/users/:last?', UserController.getUsers);
 router.get('/user/:id', UserController.getUser);
 router.put('/user/:id', UserController.update);
 router.delete('/user/:id', UserController.delete);
+router.post('/user/upload-image/:id', md_upload, UserController.upload);
 //
 
 

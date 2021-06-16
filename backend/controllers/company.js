@@ -63,7 +63,7 @@ var companyController = {
         }
 
         // Find
-        query.sort('-_id').exec((err, countries) => {
+        query.sort('-_id').exec((err, companies) => {
             if (err){
                 return res.status(500).send({
                     status: 'error',
@@ -71,16 +71,16 @@ var companyController = {
                 });
             }
 
-            if(!countries){
+            if(!companies){
                 return res.status(404).send({
                     status: 'success',
-                    message: 'No hay Compañías para mostrar'
+                    message: 'No hay compañías para mostrar'
                 });
             }
 
             return res.status(200).send({
                 status: 'success',
-                countries
+                companies
             });
             
         });
@@ -132,7 +132,7 @@ var companyController = {
         }catch(err){
             return res.status(200).send({
                 status: 'error',
-                message: 'Faltan datos por enviar !!!'
+                message: 'Faltan datos por enviar'
             }); 
         }
 

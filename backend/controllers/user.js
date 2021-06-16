@@ -12,27 +12,29 @@ var userController = {
         try{
             var validate_nick = !validator.isEmpty(params.nick);
             var validate_email = !validator.isEmpty(params.email);
-
+            var validate_pass = !validator.isEmpty(params.pass);
         }catch(err){
             return res.status(200).send({
                 status: 'error',
                 message: 'faltan datos'
             });
         }
-        if (validate_nick && validate_email){
+        if (validate_nick && validate_email && validate_pass){
             // Crear el objeto a guardar
             var user = new User();
 
             // Asignar valores
             user.nick = params.nick;
             user.email = params.email;
+            user.pfp = params.pfp;
+            user.pass = params.pass;
 
             // Guardar el objeto
             user.save((err, userStored) => {
                 if (err || !userStored){
                     return res.status(404).send({
                         status: 'error',
-                        message: 'La compañía no se ha guardado'
+                        message: 'El usuario no se ha guardado'
                     });
                 }
 
@@ -64,7 +66,7 @@ var userController = {
         }
 
         // Find
-        query.sort('-_id').exec((err, countries) => {
+        query.sort('-_id').exec((err, users) => {
             if (err){
                 return res.status(500).send({
                     status: 'error',
@@ -72,16 +74,16 @@ var userController = {
                 });
             }
 
-            if(!countries){
+            if(!users){
                 return res.status(404).send({
                     status: 'success',
-                    message: 'No hay Compañías para mostrar'
+                    message: 'No hay usuarios para mostrar'
                 });
             }
 
             return res.status(200).send({
                 status: 'success',
-                countries
+                users
             });
             
         });
@@ -97,16 +99,16 @@ var userController = {
         if(!userId || userId == null){
             return res.status(404).send({
                 status: 'error',
-                message: 'No existe la compañía'
+                message: 'No existe el usuario'
             });
         }
 
-        // Buscar la compañía
+        // Buscar el usuario
         User.findById(userId, (err, user) => {
             if(err || !user){
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No existe la compañía'
+                    message: 'No existe el usuario'
                 });
             }
         // Devolverlo en json
@@ -121,7 +123,7 @@ var userController = {
     },
 
     update: (req, res) => {
-        // Recoger el id de la compañía por la url
+        // Recoger el id del usuario por la url
         var userId = req.params.id;
 
         // Recoger los datos que llegan por put
@@ -133,7 +135,7 @@ var userController = {
         }catch(err){
             return res.status(200).send({
                 status: 'error',
-                message: 'Faltan datos por enviar !!!'
+                message: 'Faltan datos por enviar'
             }); 
         }
 
@@ -150,7 +152,7 @@ var userController = {
                 if(!userUpdated){
                     return res.status(404).send({
                         status: 'error',
-                        message: 'No existe la compañía'
+                        message: 'No existe el usuario'
                     });
                 }
 
@@ -185,7 +187,7 @@ var userController = {
             if(!userRemoved){
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No se ha borrado la compañía, posiblemente no exista'
+                    message: 'No se ha borrado el usuario, posiblemente no exista'
                 });
             }
 
@@ -196,6 +198,118 @@ var userController = {
 
         }); 
     },
+
+    upload: (req, res) => {
+
+        // Recoger el fichero de la petición
+        var file_name = 'Imagen no subida';
+
+        if(!req.files){
+            return res.status(404).send({
+                status: 'error',
+                message: file_name
+            });
+        }
+
+        // Conseguir nombre y la extensión del archivo
+        var file_path = req.files.file0.path;
+        var file_split = file_path.split('\\');
+
+        // Nombre del archivo
+        var file_name = file_split[2];
+
+        // Extensión del fichero
+        var extension_split = file_name.split('\.');
+        var file_ext = extension_split[1];
+
+        // Comprobar la extension, solo imagenes, si es valida borrar el fichero
+        if(file_ext != 'png' && file_ext != 'jpg' && file_ext != 'jpeg' && file_ext != 'gif'){
+            
+            // borrar el archivo subido
+            fs.unlink(file_path, (err) => {
+                return res.status(200).send({
+                    status: 'error',
+                    message: 'La extensión de la imagen no es válida'
+                });
+            });
+        
+        }else{
+             // Si todo es valido, sacando id de la url
+             var userId = req.params.id;
+
+             if(userId){
+                // Buscar el usuario, asignarle el nombre de la imagen y actualizarlo
+                User.findOneAndUpdate({_id: userId}, {image: file_name}, {new:true}, (err, userUpdated) => {
+
+                    if(err || !userUpdated){
+                        return res.status(200).send({
+                            status: 'error',
+                            message: 'Error al guardar la imagen'
+                        });
+                    }
+
+                    return res.status(200).send({
+                        status: 'success',
+                        user: userUpdated
+                    });
+                });
+             }else{
+                return res.status(200).send({
+                    status: 'success',
+                    pfp: file_name
+                });
+             }
+            
+        }   
+    }, // end upload file
+
+    getImage: (req, res) => {
+        var file = req.params.image;
+        var path_file = './upload/posts/'+file;
+
+        fs.exists(path_file, (exists) => {
+            if(exists){
+                return res.sendFile(path.resolve(path_file));
+            }else{
+                return res.status(404).send({
+                    status: 'error',
+                    message: 'La imagen no existe'
+                });
+            }
+        });
+    },
+
+    search: (req, res) => {
+        // Sacar el string a buscar
+        var searchString = req.params.search;
+
+        // Find or
+        Post.find({ "$or": [
+            { "nick": { "$regex": searchString, "$options": "i"}}
+        ]})
+        .exec((err, users) => {
+
+            if(err){
+                return res.status(500).send({
+                    status: 'error',
+                    message: 'Error en la petición'
+                });
+            }
+            
+            if(!users || users.length <= 0){
+                return res.status(404).send({
+                    status: 'error',
+                    message: 'No hay usuarios que coincidan con tu busqueda'
+                });
+            }
+
+            return res.status(200).send({
+                status: 'success',
+                users
+            });
+
+        });
+    }
 }
 
 module.exports = userController;
