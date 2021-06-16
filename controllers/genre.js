@@ -32,7 +32,7 @@ var genreController = {
                 if (err || !genreStored){
                     return res.status(404).send({
                         status: 'error',
-                        message: 'La compañía no se ha guardado'
+                        message: 'El género no se ha guardado'
                     });
                 }
 
@@ -64,7 +64,7 @@ var genreController = {
         }
 
         // Find
-        query.sort('-_id').exec((err, countries) => {
+        query.sort('-_id').exec((err, genres) => {
             if (err){
                 return res.status(500).send({
                     status: 'error',
@@ -72,16 +72,16 @@ var genreController = {
                 });
             }
 
-            if(!countries){
+            if(!genres){
                 return res.status(404).send({
                     status: 'success',
-                    message: 'No hay Compañías para mostrar'
+                    message: 'No hay géneros para mostrar'
                 });
             }
 
             return res.status(200).send({
                 status: 'success',
-                countries
+                genres
             });
             
         });
@@ -97,16 +97,16 @@ var genreController = {
         if(!genreId || genreId == null){
             return res.status(404).send({
                 status: 'error',
-                message: 'No existe la compañía'
+                message: 'No existe el género'
             });
         }
 
-        // Buscar la compañía
+        // Buscar el género
         Genre.findById(genreId, (err, genre) => {
             if(err || !genre){
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No existe la compañía'
+                    message: 'No existe el género'
                 });
             }
         // Devolverlo en json
@@ -121,7 +121,7 @@ var genreController = {
     },
 
     update: (req, res) => {
-        // Recoger el id de la compañía por la url
+        // Recoger el id del género por la url
         var genreId = req.params.id;
 
         // Recoger los datos que llegan por put
@@ -134,7 +134,7 @@ var genreController = {
         }catch(err){
             return res.status(200).send({
                 status: 'error',
-                message: 'Faltan datos por enviar !!!'
+                message: 'Faltan datos por enviar'
             }); 
         }
 
@@ -151,7 +151,7 @@ var genreController = {
                 if(!genreUpdated){
                     return res.status(404).send({
                         status: 'error',
-                        message: 'No existe la compañía'
+                        message: 'No existe el género'
                     });
                 }
 
@@ -186,7 +186,7 @@ var genreController = {
             if(!genreRemoved){
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No se ha borrado la compañía, posiblemente no exista'
+                    message: 'No se ha borrado el género, posiblemente no exista'
                 });
             }
 

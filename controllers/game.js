@@ -27,13 +27,14 @@ var gameController = {
             game.name = params.name;
             game.description = params.description;
             game.idCom = params.idCom;
+            game.idGen = params.idGen;
 
             // Guardar el objeto
             game.save((err, gameStored) => {
                 if (err || !gameStored){
                     return res.status(404).send({
                         status: 'error',
-                        message: 'La compañía no se ha guardado'
+                        message: 'El juego no se ha guardado'
                     });
                 }
 
@@ -134,7 +135,7 @@ var gameController = {
         }catch(err){
             return res.status(200).send({
                 status: 'error',
-                message: 'Faltan datos por enviar !!!'
+                message: 'Faltan datos por enviar'
             }); 
         }
 
@@ -151,7 +152,7 @@ var gameController = {
                 if(!gameUpdated){
                     return res.status(404).send({
                         status: 'error',
-                        message: 'No existe la compañía'
+                        message: 'No existe el juego'
                     });
                 }
 

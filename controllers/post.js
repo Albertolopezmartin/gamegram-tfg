@@ -11,15 +11,14 @@ var postController = {
         // Validar datos (validator)
         try{
             var validate_name = !validator.isEmpty(params.name);
-
-
+            var validate_idUse = !validator.isEmpty(params.idUse);
         }catch(err){
             return res.status(200).send({
                 status: 'error',
                 message: 'faltan datos'
             });
         }
-        if (validate_name){
+        if (validate_name && validate_idUse){
             // Crear el objeto a guardar
             var post = new Post();
 
@@ -34,7 +33,7 @@ var postController = {
                 if (err || !postStored){
                     return res.status(404).send({
                         status: 'error',
-                        message: 'La compañía no se ha guardado'
+                        message: 'El post no se ha guardado'
                     });
                 }
 
@@ -66,7 +65,7 @@ var postController = {
         }
 
         // Find
-        query.sort('-_id').exec((err, countries) => {
+        query.sort('-_id').exec((err, posts) => {
             if (err){
                 return res.status(500).send({
                     status: 'error',
@@ -74,16 +73,16 @@ var postController = {
                 });
             }
 
-            if(!countries){
+            if(!posts){
                 return res.status(404).send({
                     status: 'success',
-                    message: 'No hay Compañías para mostrar'
+                    message: 'No hay posts para mostrar'
                 });
             }
 
             return res.status(200).send({
                 status: 'success',
-                countries
+                posts
             });
             
         });
@@ -99,16 +98,16 @@ var postController = {
         if(!postId || postId == null){
             return res.status(404).send({
                 status: 'error',
-                message: 'No existe la compañía'
+                message: 'No existe el post'
             });
         }
 
-        // Buscar la compañía
+        // Buscar el post
         Post.findById(postId, (err, post) => {
             if(err || !post){
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No existe la compañía'
+                    message: 'No existe el post'
                 });
             }
         // Devolverlo en json
@@ -123,7 +122,7 @@ var postController = {
     },
 
     update: (req, res) => {
-        // Recoger el id de la compañía por la url
+        // Recoger el id del post por la url
         var postId = req.params.id;
 
         // Recoger los datos que llegan por put
@@ -132,14 +131,15 @@ var postController = {
         // Validar datos
         try{
             var validate_name = !validator.isEmpty(params.name);
+            var validate_idUse = !validator.isEmpty(params.idUse);
         }catch(err){
             return res.status(200).send({
                 status: 'error',
-                message: 'Faltan datos por enviar !!!'
+                message: 'Faltan datos por enviar'
             }); 
         }
 
-        if(validate_name){
+        if(validate_name && validate_idUse){
              // Find and update
              Post.findOneAndUpdate({_id: postId}, params, {new:true}, (err, postUpdated) => {
                 if(err){
@@ -152,7 +152,7 @@ var postController = {
                 if(!postUpdated){
                     return res.status(404).send({
                         status: 'error',
-                        message: 'No existe la compañía'
+                        message: 'No existe el post'
                     });
                 }
 
@@ -187,7 +187,7 @@ var postController = {
             if(!postRemoved){
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No se ha borrado la compañía, posiblemente no exista'
+                    message: 'No se ha borrado el post, posiblemente no exista'
                 });
             }
 
@@ -229,7 +229,7 @@ var postController = {
             fs.unlink(file_path, (err) => {
                 return res.status(200).send({
                     status: 'error',
-                    message: 'La extensión de la imagen no es válida !!!'
+                    message: 'La extensión de la imagen no es válida'
                 });
             });
         
@@ -238,7 +238,7 @@ var postController = {
              var postId = req.params.id;
 
              if(postId){
-                // Buscar el articulo, asignarle el nombre de la imagen y actualizarlo
+                // Buscar el post, asignarle el nombre de la imagen y actualizarlo
                 Post.findOneAndUpdate({_id: postId}, {image: file_name}, {new:true}, (err, postUpdated) => {
 
                     if(err || !postUpdated){
@@ -256,7 +256,7 @@ var postController = {
              }else{
                 return res.status(200).send({
                     status: 'success',
-                    image: file_name
+                    photo: file_name
                 });
              }
             
@@ -286,7 +286,7 @@ var postController = {
         // Find or
         Post.find({ "$or": [
             { "name": { "$regex": searchString, "$options": "i"}},
-            { "comment": { "$regex": searchString, "$options": "i"}}
+            { "idUse": { "$regex": searchString, "$options": "i"}}
         ]})
         .sort([['date', 'descending']])
         .exec((err, posts) => {
