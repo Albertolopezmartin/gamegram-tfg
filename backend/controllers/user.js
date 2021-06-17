@@ -1,15 +1,10 @@
 'use strict'
 var validator = require('validator');
 var User = require('../models/user');
-var userService = require('../services/user');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 var userController = {
-
-    authenticate: (req, res, next) => {
-        userService.authenticate(req.body)
-            .then(user => user ? res.json(user) : res.status(400).json({ message: 'Username or password is incorrect' }))
-            .catch(err => next(err));
-    },
 
     save: (req, res) => {
         // Recoger parametros por post
@@ -133,6 +128,39 @@ var userController = {
         })
 
         
+    },
+
+    login: (req, res, next) => {
+        User.find({ email: req.body.email })
+          .exec()
+          .then(user => {
+            
+            if (user.length < 1) {
+              return res.status(401).json({
+                message: "Auth failed"
+              });
+            }
+            if (req.body.pass == user[0].pass){
+                const token = jwt.sign(
+                    {
+                      email: user[0].email,
+                      userId: user[0]._id
+                    },
+                    process.env.JWT_KEY,
+                    {
+                        expiresIn: "1h"
+                    }
+                  );
+                  return res.status(200).json({
+                    message: "Auth successful",
+                    token: token
+                  });
+            } else {
+                return res.status(401).json({
+                    message: "Auth failed"
+                });
+            }
+          });
     },
 
     update: (req, res) => {

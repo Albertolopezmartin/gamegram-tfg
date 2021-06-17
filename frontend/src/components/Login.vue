@@ -38,13 +38,14 @@ export default {
   }),
   methods: {
     async login() {
+      console.log(this.email);
       try {
         await auth.login(this.email, this.password);
         const user = {
           email: this.email
         };
         auth.setUserLogged(user);
-        this.$router.push("/");
+        this.$router.push("/home");
       } catch (error) {
         console.log(error);
         this.error = true;

@@ -4,10 +4,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UserSchema = Schema({
-    nick: String,
-    pass: String,
+    nick: { type: String, unique: true },
+    pass: { type: String, required: true },
     pfp: String,
-    email: String,
+    email: { type: String, unique: true, required: true },
     idCou: {type: mongoose.Schema.Types.ObjectId, ref: 'Country'},
 });
 

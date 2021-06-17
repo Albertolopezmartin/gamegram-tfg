@@ -12,11 +12,11 @@ export default {
   },
   register(email, pass, nick, idCou, pfp) {
     const user = { email, pass, nick, idCou, pfp };
-    return axios.post(ENDPOINT_PATH + "save", user);
+    return axios.post(ENDPOINT_PATH + "user/save", user);
   },
   login(email, pass) {
     const user = { email, pass };
-    return axios.post(ENDPOINT_PATH + "save", user);
+    return axios.post(ENDPOINT_PATH + "user/login", user);
   },
   deleteUserLogged() {
     Cookies.remove('userLogged');
