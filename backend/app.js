@@ -4,10 +4,14 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 const { restart } = require('nodemon');
+const jwt = require('./helpers/jwt');
 
 
 // Ejecutar express (http)
 var app = express();
+
+// use JWT auth to secure the api
+app.use(jwt());
 
 // Cargar ficheros rutas
 var routes = require('./routes/routes');

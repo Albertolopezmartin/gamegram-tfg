@@ -10,12 +10,12 @@ export default {
   getUserLogged() {
     return Cookies.get("userLogged");
   },
-  register(email, password) {
-    const user = { email, password };
-    return axios.post(ENDPOINT_PATH + "save/user", user);
+  register(email, pass, nick, idCou, pfp) {
+    const user = { email, pass, nick, idCou, pfp };
+    return axios.post(ENDPOINT_PATH + "save", user);
   },
-  login(email, password) {
-    const user = { email, password };
+  login(email, pass) {
+    const user = { email, pass };
     return axios.post(ENDPOINT_PATH + "save", user);
   },
   deleteUserLogged() {

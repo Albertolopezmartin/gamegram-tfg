@@ -11,12 +11,21 @@
         required
         placeholder="Email"
       >
-      <label class="form-label" for="#password">Password:</label>
+      <label class="form-label" for="#nick">Nick:</label>
       <input
-        v-model="password"
+        v-model="nick"
+        class="form-input"
+        type="text"
+        id="nick"
+        required
+        placeholder="Nick"
+      >
+      <label class="form-label" for="#pass">Password:</label>
+      <input
+        v-model="pass"
         class="form-input"
         type="password"
-        id="password"
+        id="pass"
         placeholder="Password"
       >
       <label class="form-label" for="#password-repeat">Repite la contraseña:</label>
@@ -27,7 +36,7 @@
         id="password-repeat"
         placeholder="Password"
       >
-      <input class="form-submit" type="submit" value="Sign Up">
+      <input class="form-submit" type="submit" value="Regístrate">
     </form>
   </div>
 </template>
@@ -37,13 +46,16 @@ import auth from "@/logic/auth";
 export default {
   data: () => ({
     email: "",
-    password: "",
-    passwordRepeat: ""
+    nick: "",
+    pass: "",
+    passwordRepeat: "",
+    idCou: "",
+    pfp: ""
   }),
   methods: {
     async register() {
       try {
-        await auth.register(this.email, this.password);
+        await auth.register(this.email, this.pass, this.nick);
         this.$router.push("/");
       } catch (error) {
         console.log(error);

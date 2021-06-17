@@ -53,6 +53,7 @@ router.put('/user/:id', UserController.update);
 router.delete('/user/:id', UserController.delete);
 router.post('/user/upload-image/:id', md_upload, UserController.upload);
 router.get('/user/search/:search', UserController.search);
+router.post('/user/authenticate', UserController.authenticate);
 //
 
 
