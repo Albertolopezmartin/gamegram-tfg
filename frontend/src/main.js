@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
 import Login from "./components/Login";
+import Home from "./components/Home";
+import Logout from "./components/Logout";
 import Register from "./components/Register";
 import VueRouter from 'vue-router';
 import Vuelidate from 'vuelidate';
@@ -9,6 +11,7 @@ import LastPosts from './components/LastPosts.vue';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import Search from './components/Search.vue';
 import Post from './components/Post.vue';
+import Posts from './components/Posts.vue';
 import CreatePost from './components/CreatePost.vue';
 import EditPost from './components/EditPost.vue';
 import axios from 'axios';
@@ -36,12 +39,16 @@ Vue.use(VueAxios, axios)
 const routes = [
   { path: "/", component: Login },
   { path: "/login", component: Login },
+  { path: "/home", component: Home },
+  { path: "/logout", component: Logout },
   { path: "/register", component: Register },
-  {path: '/post/:id', name: 'post', component: Post},
-  {path: '/editar/:id', name: 'edit', component: EditPost},
-  {path: '/crear-post', name: 'create', component: CreatePost},
-  {path: '/ultimos-posts', component: LastPosts},
-  {path: '/buscador/:searchString', component: Search},
+  { path: '/posts/', name: 'posts', component: Posts },
+  { path: '/post/:id', name: 'post', component: Post },
+  { path: '/editar/:id', name: 'edit', component: EditPost },
+  { path: '/crear-post', name: 'create', component: CreatePost },
+  { path: '/ultimos-posts', component: LastPosts },
+  { path: '/buscador/:searchString', component: Search },
+
 ];
 
 const router = new VueRouter({

@@ -3,9 +3,7 @@
     <Slider texto="Articulos" home="true"></Slider>
     <div class="center">
       <section id="content">
-        <h2 class="subheader">Últimos artículos</h2>
-        <p v-if="userLogged">Usuario Logueado: {{userLogged}}</p>
-
+        <h2 class="subheader">Últimos posts</h2>
         <div id="post">
           <Posts v-bind:post="post"></Posts>
         </div>

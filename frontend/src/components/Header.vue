@@ -18,7 +18,7 @@
                         <router-link to="/games" active-class="active">Juegos</router-link>
                     </li>
                     <li>
-                        <router-link to="/photos" active-class="active">Fotos</router-link>
+                        <router-link to="/posts" active-class="active">Fotos</router-link>
                     </li>
                     <li>
                         <router-link to="/perfil" active-class="active">Perfil</router-link>
@@ -27,7 +27,7 @@
                         <router-link to="/login" active-class="active">Login</router-link>
                     </li>
                     <li>
-                        <router-link to="/register" active-class="active">Registrarse</router-link>
+                        <router-link to="/register" active-class="active">Registrar</router-link>
                     </li>
                     <li>
                         <router-link to="/logout" active-class="active">Logout</router-link>

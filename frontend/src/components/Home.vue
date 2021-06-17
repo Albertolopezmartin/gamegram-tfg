@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Slider texto="Blog"></Slider>
+    <Slider texto="Home"></Slider>
     <div class="center">
       <section id="content">
-        <h1 class="subheader">Blog</h1>
+        <h1 class="subheader">Página principal</h1>
         <div id="posts" v-if="posts">
           <Posts :posts="posts"></Posts>
         </div>
@@ -20,7 +20,7 @@ import axios from "axios";
 import Global from "../Global";
 import Posts from "./Posts";
 export default {
-  name: "Blog",
+  name: "Home",
   components: {
     Slider,
     Sidebar,
