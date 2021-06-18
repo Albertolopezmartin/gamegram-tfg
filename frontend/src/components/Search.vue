@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     getPostsBySearch(searchString) {
-      axios.get(this.url+"search/"+searchString).then((res) => {
+      axios.get(this.url+"post/search/"+searchString).then((res) => {
         if (res.data.status == "success") {
           this.posts = res.data.posts;
 

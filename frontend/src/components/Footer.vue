@@ -9,7 +9,7 @@
           <router-link to="/games" active-class="active">Juegos</router-link>
         </li>
         <li>
-          <router-link to="/photos" active-class="active">Fotos</router-link>
+          <router-link to="/posts" active-class="active">Fotos</router-link>
         </li>
         <li>
           <router-link to="/perfil" active-class="active">Perfil</router-link>

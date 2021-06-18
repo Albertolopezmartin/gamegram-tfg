@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header key="componentKey"></Header>
       <router-view></router-view>
     <Footer></Footer>
   </div>

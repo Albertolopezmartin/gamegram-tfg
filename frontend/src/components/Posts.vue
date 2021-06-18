@@ -13,7 +13,7 @@
             v-if="post.photo"
           />
           <img
-            src="../assets/images/parque-nacional-banff.jpg"
+            src="../assets/images/default-image-620x600.jpg"
             :alt="post.name"
             v-if="!post.photo"
           />

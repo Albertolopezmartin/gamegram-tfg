@@ -33,11 +33,13 @@ Vue.use(IconsPlugin)
 
 Vue.use(VueRouter);
 Vue.use(Vuelidate);
+Vue.use(require('vue-moment'));
 
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios);
+
 
 const routes = [
-  { path: "/", component: Login },
+  { path: "/", component: Home },
   { path: "/login", component: Login },
   { path: "/home", component: Home },
   { path: "/logout", component: Logout },

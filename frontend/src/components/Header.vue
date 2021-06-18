@@ -18,31 +18,39 @@
                         <router-link to="/games" active-class="active">Juegos</router-link>
                     </li>
                     <li>
-                        <router-link to="/posts" active-class="active">Fotos</router-link>
+                        <router-link to="/ultimos-posts" active-class="active">Fotos</router-link>
                     </li>
                     <li>
                         <router-link to="/perfil" active-class="active">Perfil</router-link>
                     </li>
-                    <li>
-                        <router-link to="/login" active-class="active">Login</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/register" active-class="active">Registrar</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/logout" active-class="active">Logout</router-link>
-                    </li>
+                    <div v-if="userLogged">
+                        <li>
+                            <router-link to="/logout" active-class="active">Logout</router-link>
+                        </li>
+                    </div>
+                    <div v-else>
+                        <li>
+                            <router-link to="/login" active-class="active">Login</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/register" active-class="active">Registrar</router-link>
+                        </li>
+                    </div>
                 </ul>
             </nav>
-
-            <!--LIMPIAR FLOATADOS-->
             <div class="clearfix"></div>
         </div>
     </header>
 </template>
 
 <script>
+import auth from "@/logic/auth";
 export default {
-    name:'Header'
+    name:'Header',
+    computed: {
+    userLogged() {
+      return auth.getUserLogged();
+    }
+  }
 }
 </script>

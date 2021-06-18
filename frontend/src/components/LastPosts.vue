@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Slider texto="Posts" home="true"></Slider>
+    <Slider texto="Posts" ></Slider>
     <div class="center">
       <section id="content">
         <h2 class="subheader">Últimos posts</h2>
@@ -26,7 +26,7 @@ export default {
   components: {
     Slider,
     Sidebar,
-    Posts,
+    Posts
   },
   mounted() {
     this.getLastPosts();

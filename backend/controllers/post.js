@@ -294,9 +294,9 @@ var postController = {
         // Find or
         Post.find({ "$or": [
             { "name": { "$regex": searchString, "$options": "i"}},
-            { "idUse": { "$regex": searchString, "$options": "i"}}
+            { "comment": { "$regex": searchString, "$options": "i"}}
         ]})
-        .sort([['date', 'descending']])
+        .sort([['postdate', 'descending']])
         .exec((err, posts) => {
 
             if(err){

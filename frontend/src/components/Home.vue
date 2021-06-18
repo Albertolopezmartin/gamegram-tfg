@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Slider texto="Home"></Slider>
+    <Slider texto="Home" home="true"></Slider>
     <div class="center">
       <section id="content">
         <h1 class="subheader">Página principal</h1>
