@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Slider texto="Articulos" home="true"></Slider>
+    <Slider texto="Posts" home="true"></Slider>
     <div class="center">
       <section id="content">
         <h2 class="subheader">Últimos posts</h2>

@@ -8,18 +8,18 @@
       >
         <div class="image-wrap">
           <img
-            :src="url + 'get-image/' + post.image"
-            :alt="post.title"
-            v-if="post.image"
+            :src="url + 'get-image/' + post.photo"
+            :alt="post.name"
+            v-if="post.photo"
           />
           <img
             src="../assets/images/parque-nacional-banff.jpg"
-            :alt="post.title"
-            v-if="!post.image"
+            :alt="post.name"
+            v-if="!post.photo"
           />
         </div>
-        <h2><router-link :to="{name: 'post', params: {id: post._id}}">{{ post.title }}</router-link></h2>
-        <span class="date"> {{ post.date  | moment("from","now")}}</span>
+        <h2><router-link :to="{name: 'post', params: {id: post._id}}">{{ post.name }}</router-link></h2>
+        <span class="date"> {{ post.postdate  | moment("from","now")}}</span>
         <a href="#">Leer más</a>
 
         <div class="clearfix"></div>

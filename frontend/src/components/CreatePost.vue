@@ -6,25 +6,25 @@
 
         <form action="mid-form" v-on:submit.prevent="save()">
           <div class="form-group">
-            <label for="title">Titulo</label>
-            <input type="text" name="title" v-model="post.title" required />
-            <div v-if="submitted && !$v.post.title.required">
+            <label for="name">Titulo</label>
+            <input type="text" name="name" v-model="post.name" required />
+            <div v-if="submitted && !$v.post.name.required">
               El titulo debe tener algo
             </div>
           </div>
           <div class="form-group">
-            <label for="content">Contenido</label>
+            <label for="comment">Contenido</label>
             <textarea
-              name="content"
-              v-model="post.content"
+              name="comment"
+              v-model="post.comment"
               required
             ></textarea>
-            <div v-if="submitted && !$v.post.content.required">
+            <div v-if="submitted && !$v.post.comment.required">
               El contenido debe tener algo
             </div>
           </div>
           <div class="form-group">
-            <label for="image">Imagen</label>
+            <label for="photo">Imagen</label>
             <input
               type="file"
               id="file"
@@ -67,10 +67,10 @@ export default {
   },
   validations: {
     post: {
-      title: {
+      name: {
         required,
       },
-      content: {
+      comment: {
         required,
       },
     },
@@ -103,7 +103,7 @@ export default {
                   .then((response) => {
                     if (response.data.post) {
                         swal(
-                            'Artículo creado',
+                            'Post creado',
                             'El post se ha creado correctamente',
                             'success'
                         );
@@ -123,7 +123,7 @@ export default {
                   });
               } else {
                   swal(
-                            'Artículo creado',
+                            'Post creado',
                             'El post se ha creado correctamente',
                             'success'
                         );

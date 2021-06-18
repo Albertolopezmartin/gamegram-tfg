@@ -3,22 +3,22 @@
 
     <div class="center">
       <section id="content">
-                <article class="article-item article-detail" v-if="article">
+                <post class="post-item post-detail" v-if="post">
                     <div class="image-wrap">
-                    <img :src="url + 'get-image/'+ article.image" :alt="article.title" v-if="article.image"/>
-                    <img src="../assets/images/parque-nacional-banff.jpg" :alt="article.title" v-else>
+                    <img :src="url + 'get-image/'+ post.photo" :alt="post.name" v-if="post.image"/>
+                    <img src="../assets/images/parque-nacional-banff.jpg" :alt="post.name" v-else>
                     </div>
     
-                    <h1 class="subheader">{{article.title}}</h1>
+                    <h1 class="subheader">{{post.name}}</h1>
                     <span class="date">
-                        {{article.date | moment("from", "now")}}
+                        {{post.date | moment("from", "now")}}
                     </span>
-                    <p>{{article.content}}</p>
+                    <p>{{post.content}}</p>
 
                     <div class="clearfix"></div>
-                    <router-link :to="'/editar/'+article._id" class="btn btn-warning">Editar</router-link>
-                    <a @click="deleteArticle(article._id)" class="btn btn-danger">Eliminar</a>
-                </article>
+                    <router-link :to="'/editar/'+post._id" class="btn btn-warning">Editar</router-link>
+                    <a @click="deletePost(post._id)" class="btn btn-danger">Eliminar</a>
+                </post>
       </section>
     </div>
     <Sidebar></Sidebar>
@@ -31,33 +31,33 @@ import Global from "../Global";
 import axios from "axios";
 import swal from "sweetalert";
 export default {
-    name: 'Article',
+    name: 'Post',
     components: {
     Sidebar
   },
   data(){
       return{
           url: Global.url,
-          article: null
+          post: null
       }
   },
   mounted(){
-      var articleId = this.$route.params.id;
-      this.getArticle(articleId);
+      var postId = this.$route.params.id;
+      this.getPost(postId);
   },
   methods: {
-      getArticle(articleId){
-          axios.get(this.url + 'article/'+ articleId).then(res => {
+      getPost(postId){
+          axios.get(this.url + 'post/'+ postId).then(res => {
               if(res.data.status == 'success'){
-                  this.article = res.data.article;
+                  this.post = res.data.post;
               }
           });
       },
-      deleteArticle(articleId){
-          axios.delete(this.url+'article/'+articleId).then(response => {
+      deletePost(postId){
+          axios.delete(this.url+'post/'+postId).then(response => {
               swal(
-                  'Artículo borrado',
-                  'El artículo se ha borrado',
+                  'Post borrado',
+                  'El post se ha borrado',
                   'success'
               );
               console.log(response);

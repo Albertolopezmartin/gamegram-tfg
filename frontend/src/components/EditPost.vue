@@ -5,28 +5,28 @@
         <h1 class="subheader">Editar Post</h1>
         <form action="mid-form" v-on:submit.prevent="save()">
           <div class="form-group">
-            <label for="title">Titulo</label>
-            <input type="text" name="title" v-model="post.title" required />
-            <div v-if="submitted && !$v.post.title.required">
+            <label for="name">Titulo</label>
+            <input type="text" name="name" v-model="post.name" required />
+            <div v-if="submitted && !$v.post.name.required">
               El titulo debe tener algo
             </div>
           </div>
           <div class="form-group">
-            <label for="content">Contenido</label>
+            <label for="comment">Comentario</label>
             <textarea
-              name="content"
-              v-model="post.content"
+              name="comment"
+              v-model="post.comment"
               required
             ></textarea>
-            <div v-if="submitted && !$v.post.content.required">
-              El contenido debe tener algo
+            <div v-if="submitted && !$v.post.comment.required">
+              El comentario debe tener algo
             </div>
           </div>
           <div class="form-group">
-            <div v-if="post.image">
-                <img :src="url + 'get-image/'+ post.image" :alt="post.title" v-if="post.image" class="image-small"/>
+            <div v-if="post.photo">
+                <img :src="url + 'get-image/'+ post.photo" :alt="post.name" v-if="post.photo" class="image-small"/>
             </div>
-            <label for="image">Imagen</label>
+            <label for="photo">Imagen</label>
             <input
               type="file"
               id="file"
@@ -50,7 +50,7 @@ import Sidebar from "./Sidebar.vue";
 import Global from "../Global";
 import Post from "./models/Post";
 import axios from "axios";
-import { required } from "vuelidate/lib/validators";
+import { required } from 'vuelidate/lib/validators';
 import swal from "sweetalert";
 
 export default {
@@ -69,10 +69,10 @@ export default {
   },
   validations: {
     post: {
-      title: {
+      name: {
         required,
       },
-      content: {
+      comment: {
         required,
       },
     },
@@ -103,7 +103,6 @@ export default {
           .then((response) => {
             if (response.data.status == "success") {
               const formData = new FormData();
-
               if (
                 this.file != null &&
                 this.file != undefined &&

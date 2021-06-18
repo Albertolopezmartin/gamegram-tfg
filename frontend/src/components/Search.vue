@@ -3,12 +3,12 @@
     <Slider :texto="'Busqueda: '+ searchString"></Slider>
     <div class="center">
       <section id="content">
-        <h1 class="subheader" v-if="posts">Articulos encontrados</h1>
+        <h1 class="subheader" v-if="posts">Posts encontrados</h1>
         <div id="posts" v-if="posts">
           <Posts :posts="posts"></Posts>
         </div>
         <div v-else>
-            <h2>No hay articulos para mostrar</h2>
+            <h2>No hay posts para mostrar</h2>
         </div>
       </section>
     </div>
