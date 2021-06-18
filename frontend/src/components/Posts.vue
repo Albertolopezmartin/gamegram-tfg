@@ -8,7 +8,7 @@
       >
         <div class="image-wrap">
           <img
-            :src="url + 'get-image/' + post.photo"
+            :src="url + 'post/get-image/' + post.photo"
             :alt="post.name"
             v-if="post.photo"
           />

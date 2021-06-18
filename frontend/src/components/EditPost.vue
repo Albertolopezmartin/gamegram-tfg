@@ -24,7 +24,7 @@
           </div>
           <div class="form-group">
             <div v-if="post.photo">
-                <img :src="url + 'get-image/'+ post.photo" :alt="post.name" v-if="post.photo" class="image-small"/>
+                <img :src="url + 'post/get-image/'+ post.photo" :alt="post.name" v-if="post.photo" class="image-small"/>
             </div>
             <label for="photo">Imagen</label>
             <input
@@ -111,7 +111,7 @@ export default {
                 formData.append("file0", this.file, this.file.name);
                 var postId = response.data.post._id;
                 axios
-                  .post(this.url + "upload-image/" + postId, formData)
+                  .post(this.url + "post/upload-image/" + postId, formData)
                   .then((response) => {
                     if (response.data.post) {
                       swal(
@@ -130,7 +130,7 @@ export default {
                   });
               } else {
                 swal(
-                  "Post creado",
+                  "Post editado",
                   "El post se ha editado correctamente",
                   "success"
                 );

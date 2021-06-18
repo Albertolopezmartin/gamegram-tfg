@@ -2,6 +2,7 @@
 var validator = require('validator');
 var User = require('../models/user');
 const jwt = require("jsonwebtoken");
+var fs = require('fs');
 
 var userController = {
 

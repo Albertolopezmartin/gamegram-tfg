@@ -1,6 +1,8 @@
 'use strict'
 var validator = require('validator');
 var Post = require('../models/post');
+var fs = require('fs');
+var path = require('path');
 
 var postController = {
 
@@ -270,8 +272,8 @@ var postController = {
     }, // end upload file
 
     getImage: (req, res) => {
-        var file = req.params.photo;
-        var path_file = './upload/photos/'+file;
+        var file = req.params.image;
+        var path_file = './upload/images/'+file;
 
         fs.exists(path_file, (exists) => {
             if(exists){

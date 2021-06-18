@@ -3,22 +3,22 @@
 
     <div class="center">
       <section id="content">
-                <post class="post-item post-detail" v-if="post">
+                <article class="post-item post-detail" v-if="post">
                     <div class="image-wrap">
-                    <img :src="url + 'get-image/'+ post.photo" :alt="post.name" v-if="post.image"/>
+                    <img :src="url + 'post/get-image/'+ post.photo" :alt="post.name" v-if="post.photo"/>
                     <img src="../assets/images/parque-nacional-banff.jpg" :alt="post.name" v-else>
                     </div>
     
                     <h1 class="subheader">{{post.name}}</h1>
                     <span class="date">
-                        {{post.date | moment("from", "now")}}
+                        {{post.postdate | moment("from", "now")}}
                     </span>
-                    <p>{{post.content}}</p>
+                    <p>{{post.comment}}</p>
 
                     <div class="clearfix"></div>
                     <router-link :to="'/editar/'+post._id" class="btn btn-warning">Editar</router-link>
                     <a @click="deletePost(post._id)" class="btn btn-danger">Eliminar</a>
-                </post>
+                </article>
       </section>
     </div>
     <Sidebar></Sidebar>
@@ -61,7 +61,7 @@ export default {
                   'success'
               );
               console.log(response);
-              this.$router.push('/blog');
+              this.$router.push('/home');
           });
       }
   }

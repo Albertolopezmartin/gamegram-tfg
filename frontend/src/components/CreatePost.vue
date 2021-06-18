@@ -61,7 +61,7 @@ export default {
     return {
       url: Global.url,
       file: "",
-      post: new Post("", "", null, ""),
+      post: new Post("", "", null, "", "60c9a42675eb293b301d6528", "60c9cc14b054ef2a04dc31c2"),
       submitted: false,
     };
   },
@@ -86,7 +86,7 @@ export default {
         return false;
       } else {
         axios
-          .post(this.url + "save", this.post)
+          .post(this.url + "post/save", this.post)
           .then((response) => {
             if (response.data.status == "success") {
               const formData = new FormData();
@@ -99,7 +99,7 @@ export default {
                 formData.append("file0", this.file, this.file.name);
                 var postId = response.data.post._id;
                 axios
-                  .post(this.url + "upload-image/" + postId, formData)
+                  .post(this.url + "post/upload-image/" + postId, formData)
                   .then((response) => {
                     if (response.data.post) {
                         swal(
@@ -108,7 +108,7 @@ export default {
                             'success'
                         );
                       this.post = response.data.post;
-                      this.$router.push("/blog");
+                      this.$router.push("/home");
 
                     }else{
                         swal(
@@ -128,7 +128,7 @@ export default {
                             'success'
                         );
                   this.post = response.data.post;
-                  this.$router.push("/blog");
+                  this.$router.push("/home");
               }
             }
           })

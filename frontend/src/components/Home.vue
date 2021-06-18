@@ -18,7 +18,7 @@ import Slider from "./Slider.vue";
 import Sidebar from "./Sidebar.vue";
 import axios from "axios";
 import Global from "../Global";
-import Posts from "./Posts";
+import Posts from "./Posts.vue";
 export default {
   name: "Home",
   components: {

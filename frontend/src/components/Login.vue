@@ -38,7 +38,6 @@ export default {
   }),
   methods: {
     async login() {
-      console.log(this.email);
       try {
         await auth.login(this.email, this.password);
         const user = {
