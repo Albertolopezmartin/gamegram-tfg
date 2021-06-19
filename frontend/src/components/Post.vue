@@ -4,8 +4,8 @@
       <section id="content">
         <article class="post-item post-detail" v-if="post">
           <div class="image-wrap">
-            <img
-              :src="url + 'post/get-image/' + post.photo"
+            <b-img
+              :src="url + 'post/get-image/' + post.photo" fluid-grow
               :alt="post.name"
               v-if="post.photo"
             />

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <Slider texto="Home" home="true"></Slider>
+    <Slider texto="Gamegram" home="true"></Slider>
     <div class="center">
       <section id="content">
-        <h1 class="subheader">Página principal</h1>
+        <h1 class="subheader">Home</h1>
         <div id="posts" v-if="posts">
           <Posts :posts="posts"></Posts>
         </div>

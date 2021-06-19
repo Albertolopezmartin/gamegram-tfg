@@ -1,56 +1,30 @@
 <template>
-    <header id="header">
-        <div class="center">
-        <!-- LOGO -->
-            <div id="logo">
-                <img src="../assets/logo.png" class="app-logo" alt="Logotipo">
-                <span id="brand">
-                    <strong>GAMEGRAM</strong>
-                </span>
-            </div>
-        <!-- MENU -->
-            <nav id="menu">
-                <ul>
-                    <li>
-                        <router-link to="/home" active-class="active">Inicio</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/games" active-class="active">Juegos</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/ultimos-posts" active-class="active">Fotos</router-link>
-                    </li>
-                    <li>
-                        <router-link to="/perfil" active-class="active">Perfil</router-link>
-                    </li>
-                    <div v-if="userLogged">
-                        <li>
-                            <router-link to="/logout" active-class="active">Logout</router-link>
-                        </li>
-                    </div>
-                    <div v-else>
-                        <li>
-                            <router-link to="/login" active-class="active">Login</router-link>
-                        </li>
-                        <li>
-                            <router-link to="/register" active-class="active">Registrar</router-link>
-                        </li>
-                    </div>
-                </ul>
-            </nav>
-            <div class="clearfix"></div>
+  <header>
+      <b-navbar toggleable>
+        <div id="logo">
+          <img src="../assets/logo.svg" class="app-logo" alt="Logotipo" />
         </div>
-    </header>
+        <b-navbar-brand>GAMEGRAM</b-navbar-brand>
+        <b-navbar-toggle target="navbar-toggle-collapse">
+          <template #default="{ expanded }">
+            <b-icon v-if="expanded" icon="chevron-bar-up"></b-icon>
+            <b-icon v-else icon="chevron-bar-down"></b-icon>
+          </template>
+        </b-navbar-toggle>
+        <b-collapse id="navbar-toggle-collapse" is-nav>
+          <b-navbar-nav class="ml-auto">
+            <b-nav-item router-link to="/home">Inicio</b-nav-item>
+            <b-nav-item router-link to="/games">Juegos</b-nav-item>
+            <b-nav-item router-link to="/ultimos-posts">Fotos</b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
+      <div class="clearfix"></div>
+  </header>
 </template>
 
 <script>
-import auth from "@/logic/auth";
 export default {
-    name:'Header',
-    computed: {
-    userLogged() {
-      return auth.getUserLogged();
-    }
-  }
-}
+  name: "Header",
+};
 </script>
