@@ -1,11 +1,11 @@
 <template>
   <div>
-    <Slider texto="Posts" ></Slider>
+    <Slider texto="Fotos" ></Slider>
     <div class="center">
       <section id="content">
-        <h2 class="subheader">Últimos posts</h2>
-        <div id="post">
-          <Posts v-bind:post="post"></Posts>
+        <h2 class="subheader">Posts</h2>
+        <div id="posts">
+          <Posts v-bind:posts="posts"></Posts>
         </div>
       </section>
     </div>
@@ -34,14 +34,14 @@ export default {
   data() {
     return {
       url: Global.url,
-      post: [],
+      posts: [],
     };
   },
   methods: {
     getLastPosts() {
-      axios.get(this.url + "post/true").then((res) => {
+      axios.get(this.url + "posts").then((res) => {
         if (res.data.status == "success") {
-          this.post = res.data.post;
+          this.posts = res.data.posts;
 
           console.log(this.post);
         }

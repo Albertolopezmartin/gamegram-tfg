@@ -16,6 +16,7 @@ import CreatePost from './components/CreatePost.vue';
 import EditPost from './components/EditPost.vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import Redirect from './components/Redirect.vue';
 
 Vue.config.productionTip = false
 
@@ -50,6 +51,7 @@ const routes = [
   { path: '/crear-post', name: 'create', component: CreatePost },
   { path: '/ultimos-posts', component: LastPosts },
   { path: '/buscador/:searchString', component: Search },
+  {path: '/redirect/:searchString', component: Redirect},
 
 ];
 

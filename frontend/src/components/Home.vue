@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     getPosts() {
-      axios.get(this.url+"posts").then((res) => {
+      axios.get(this.url+"posts/true").then((res) => {
         if (res.data.status == "success") {
           this.posts = res.data.posts;
 
