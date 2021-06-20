@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    <Header key="componentKey"></Header>
+  <div class="app" :class="mode">
+    <Header :mode="mode"></Header>
       <router-view></router-view>
     <Footer></Footer>
   </div>
@@ -12,6 +12,11 @@ import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
+  data () {
+    return {
+      mode: 'dark'
+    }
+  },
   components: {
     Header,
     Footer

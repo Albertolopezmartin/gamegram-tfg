@@ -135,7 +135,7 @@ export default {
                   "success"
                 );
                 this.post = response.data.post;
-                this.$router.push("/post/"+postId);
+                this.$router.push("/post/"+this.post._id);
               }
             }
           })

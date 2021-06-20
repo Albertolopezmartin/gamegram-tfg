@@ -9,10 +9,7 @@
           <router-link to="/games" active-class="active">Juegos</router-link>
         </li>
         <li>
-          <router-link to="/posts" active-class="active">Fotos</router-link>
-        </li>
-        <li>
-          <router-link to="/perfil" active-class="active">Perfil</router-link>
+          <router-link to="/ultimos-posts" active-class="active">Fotos</router-link>
         </li>
       </ul>
     </nav>
