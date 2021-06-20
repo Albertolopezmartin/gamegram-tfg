@@ -1,7 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
+import Global from "../Global";
 
-const ENDPOINT_PATH = "http://localhost:3900/api/";
+var url = Global.url;
 
 export default {
   setUserLogged(userLogged) {
@@ -11,12 +12,12 @@ export default {
     return Cookies.get("userLogged");
   },
   register(email, pass, nick, idCou, pfp) {
-    const user = { email, pass, nick, idCou, pfp };
-    return axios.post(ENDPOINT_PATH + "user/save", user);
+    var user = { email, pass, nick, idCou, pfp };
+    return axios.post(url + "user/save", user);
   },
-  login(email, pass) {
-    const user = { email, pass };
-    return axios.post(ENDPOINT_PATH + "user/login", user);
+  login(nick, pass) {
+    var user = { nick, pass };
+    return axios.post(url + "user/login", user);
   },
   deleteUserLogged() {
     Cookies.remove('userLogged');

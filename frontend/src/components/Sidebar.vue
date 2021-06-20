@@ -2,6 +2,7 @@
   <aside id="sidebar">
     <div id="nav-blog" class="sidebar-item">
       <div v-if="userLogged">
+        <p v-if="userLogged">Hola {{userLogged}}.</p>
         <router-link to="/perfil" class="btn btn-primary">Perfil</router-link>
         <br>
         <router-link to="/logout" class="btn btn-danger">Logout</router-link>
@@ -35,21 +36,35 @@
 
 <script>
 import auth from "@/logic/auth";
+import Global from "../Global";
+import axios from "axios";
 export default {
   name: "Sidebar",
   data() {
     return {
       searchString: null,
+      url: Global.url,
+      user: null,
     };
   },
   computed: {
     userLogged() {
+      
+      var userNick = auth.getUserLogged();
+      this.getUser(userNick);
       return auth.getUserLogged();
     },
   },
   methods: {
     goSearch() {
       this.$router.push("/redirect/" + this.searchString);
+    },
+    getUser(userNick) {
+      axios.get(this.url + "usernick/" + userNick).then((res) => {
+        if (res.data.status == "success") {
+          this.user = res.data.user;
+        }
+      });
     },
   },
 };

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import Login from "./components/Login.vue";
+import Perfil from "./components/Perfil.vue";
 import Home from "./components/Home.vue";
 import Logout from "./components/Logout.vue";
 import Register from "./components/Register.vue";
@@ -50,6 +51,7 @@ const routes = [
   { path: '/editar/:id', name: 'edit', component: EditPost },
   { path: '/crear-post', name: 'create', component: CreatePost },
   { path: '/ultimos-posts', component: LastPosts },
+  { path: '/perfil', component: Perfil },
   { path: '/buscador/:searchString', component: Search },
   {path: '/redirect/:searchString', component: Redirect},
 

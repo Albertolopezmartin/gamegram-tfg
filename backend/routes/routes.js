@@ -49,7 +49,8 @@ router.get('/post/search/:search', PostController.search);
 //
 router.post('/user/save', UserController.save);
 router.get('/users/:last?', UserController.getUsers);
-router.get('/user/:id', UserController.getUser);
+router.get('/user/:id', UserController.getUserById);
+router.get('/usernick/:nick', UserController.getUser);
 router.put('/user/:id', UserController.update);
 router.delete('/user/:id', UserController.delete);
 router.post('/user/upload-image/:id', md_upload, UserController.upload);
