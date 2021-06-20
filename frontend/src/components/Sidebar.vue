@@ -3,6 +3,18 @@
     <div id="nav-blog" class="sidebar-item">
       <div v-if="userLogged">
         <p v-if="userLogged">Hola {{userLogged}}.</p>
+        <div class="image-wrap">
+          <img
+            :src="url + 'post/get-image/' + user.pfp"
+            :alt="user.nick"
+            v-if="user.pfp"
+          />
+          <img
+            src="../assets/images/default-image-620x600.jpg"
+            :alt="user.nick"
+            v-if="!user.pfp"
+          />
+          </div>
         <router-link to="/perfil" class="btn btn-primary">Perfil</router-link>
         <br>
         <router-link to="/logout" class="btn btn-danger">Logout</router-link>

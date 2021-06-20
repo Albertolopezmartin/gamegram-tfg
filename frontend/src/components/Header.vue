@@ -14,7 +14,6 @@
         <b-collapse id="navbar-toggle-collapse" is-nav>
           <b-navbar-nav class="ml-auto">
             <b-nav-item router-link to="/home">Inicio</b-nav-item>
-            <b-nav-item router-link to="/games">Juegos</b-nav-item>
             <b-nav-item router-link to="/ultimos-posts">Fotos</b-nav-item>
           </b-navbar-nav>
         </b-collapse>

@@ -6,9 +6,6 @@
           <router-link to="/home" active-class="active">Inicio</router-link>
         </li>
         <li>
-          <router-link to="/games" active-class="active">Juegos</router-link>
-        </li>
-        <li>
           <router-link to="/ultimos-posts" active-class="active">Fotos</router-link>
         </li>
       </ul>

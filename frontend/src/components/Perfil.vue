@@ -20,9 +20,7 @@
           </div>
           <br>
           <p>Email: {{ user.email }}</p>
-          <router-link :to="'/editarPerfil/' + userNick" class="btn btn-warning"
-            >Editar</router-link
-          >
+          <router-link :to="'/editarPerfil/' + user._id" class="btn btn-warning">Editar</router-link>
         
         </article>
       </section>

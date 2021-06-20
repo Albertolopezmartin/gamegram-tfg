@@ -15,6 +15,7 @@ import Post from './components/Post.vue';
 import Posts from './components/Posts.vue';
 import CreatePost from './components/CreatePost.vue';
 import EditPost from './components/EditPost.vue';
+import EditProfile from './components/EditProfile.vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import Redirect from './components/Redirect.vue';
@@ -49,6 +50,7 @@ const routes = [
   { path: '/posts/', name: 'posts', component: Posts },
   { path: '/post/:id', name: 'post', component: Post },
   { path: '/editar/:id', name: 'edit', component: EditPost },
+  { path: '/editarPerfil/:id', name: 'editProfile', component: EditProfile },
   { path: '/crear-post', name: 'create', component: CreatePost },
   { path: '/ultimos-posts', component: LastPosts },
   { path: '/perfil', component: Perfil },
