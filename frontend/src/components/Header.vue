@@ -1,6 +1,5 @@
 <template>
   <header>
-      
       <b-navbar type="dark" toggleable>
         <div id="logo">
           <img src="../assets/logo.svg" class="app-logo" alt="Logotipo" />
@@ -21,7 +20,7 @@
         </b-collapse>
       </b-navbar>
 
-      <Toggle :mode="mode" />
+      <Toggle :mode="mode" @toggle="$emit('toggle')"/>
       <div class="clearfix"></div>
   </header>
 </template>
