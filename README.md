@@ -2,7 +2,7 @@
 
 -Link to online app: https://gamegram-tfg.herokuapp.com/.
 
--Link to video tutorial: https://drive.google.com/drive/u/1/folders/1AHXJYopT-DURKcQK6-aEpODEUYMUZtYb.
+-Link to video: https://drive.google.com/drive/u/1/folders/1AHXJYopT-DURKcQK6-aEpODEUYMUZtYb.
 
 Technologies used in the creation of this game: 
 
