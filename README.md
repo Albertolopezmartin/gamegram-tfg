@@ -4,6 +4,19 @@
 
 -Link to video tutorial: https://drive.google.com/drive/u/1/folders/1AHXJYopT-DURKcQK6-aEpODEUYMUZtYb.
 
+Technologies used in the creation of this game: 
+
+> Javascript |
+> node.js |
+> express |
+> npm |
+> Vue |
+> MongoDB |
+> JWT |
+> body-parser |
+> mongoose |
+> connect-multiparty
+
 # Installation instructions
 
 1. Have npm,node.js, MongoDB and Vue installed in your computer.
