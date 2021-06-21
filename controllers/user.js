@@ -1,6 +1,8 @@
 'use strict'
 var validator = require('validator');
 var User = require('../models/user');
+const jwt = require("jsonwebtoken");
+var fs = require('fs');
 
 var userController = {
 
@@ -96,7 +98,7 @@ var userController = {
         
     },
 
-    getUser: (req, res) => {
+    getUserById: (req, res) => {
 
         // Recoger el id de la url
         var userId = req.params.id;
@@ -126,6 +128,71 @@ var userController = {
         })
 
         
+    },
+
+    getUser: (req, res) => {
+
+        // Recoger el id de la url
+        var userNick = req.params.nick;
+
+        // Comprobar que existe
+        if(!userNick || userNick == null){
+            return res.status(404).send({
+                status: 'error',
+                message: 'No existe el usuario'
+            });
+        }
+
+        // Buscar el usuario
+        User.findOne({nick: userNick}, (err, user) => {
+            if(err || !user){
+                return res.status(404).send({
+                    status: 'error',
+                    message: 'No existe el usuario'
+                });
+            }
+        // Devolverlo en json
+
+        return res.status(200).send({
+            status: 'success',
+            user
+        });
+        })
+
+        
+    },
+
+    login: (req, res, next) => {
+        User.find({ nick: req.body.nick })
+          .exec()
+          .then(user => {
+            
+            if (user.length < 1) {
+              return res.status(401).json({
+                message: "Auth failed"
+              });
+            }
+            if (req.body.pass == user[0].pass){
+                const token = jwt.sign(
+                    {
+                      nick: user[0].nick,
+                      userId: user[0]._id
+                    },
+                    process.env.JWT_KEY,
+                    {
+                        expiresIn: "1h"
+                    }
+                  );
+                  return res.status(200).json({
+                    message: "Auth successful",
+                    token: token
+                  });
+            } else {
+                return res.status(401).json({
+                    message: "Auth failed"
+                });
+            }
+          });
     },
 
     update: (req, res) => {
@@ -270,13 +337,14 @@ var userController = {
     }, // end upload file
 
     getImage: (req, res) => {
-        var file = req.params.pfp;
-        var path_file = './upload/photos/'+file;
+        var file = req.params.getImage;
+        var path_file = './upload/images/'+file;
 
         fs.exists(path_file, (exists) => {
             if(exists){
                 return res.sendFile(path.resolve(path_file));
             }else{
+                console.log(path_file);
                 return res.status(404).send({
                     status: 'error',
                     message: 'La imagen no existe'

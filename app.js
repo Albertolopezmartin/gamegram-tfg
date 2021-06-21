@@ -9,6 +9,9 @@ const { restart } = require('nodemon');
 // Ejecutar express (http)
 var app = express();
 
+// use JWT auth to secure the api
+//app.use(jwt());
+
 // Cargar ficheros rutas
 var routes = require('./routes/routes');
 
