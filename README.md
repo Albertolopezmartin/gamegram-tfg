@@ -4,7 +4,7 @@
 
 -Link to video: https://drive.google.com/drive/u/1/folders/1AHXJYopT-DURKcQK6-aEpODEUYMUZtYb.
 
-Technologies used in the creation of this game: 
+Technologies used in the creation of this web-app: 
 
 > Javascript |
 > node.js |
